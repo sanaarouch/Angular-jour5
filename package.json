@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider ng serve",
+    "start": "NODE_OPTIONS='--openssl-legacy-provider --max-old-space-size=4096' ng serve --host 0.0.0.0 --port 4200",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
