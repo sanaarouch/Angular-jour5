@@ -35,6 +35,8 @@ import { AjouterComponent } from './back/article/ajouter/ajouter.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       {path : "" , component: AccueilComponent} , // page d'accueil
       {path : "article/:id" , component: ArticleComponent} ,
@@ -43,10 +45,8 @@ import { AjouterComponent } from './back/article/ajouter/ajouter.component';
       {path : "admin" , component : DashboardComponent} ,//admin apres
       {path : "**" , component: NotFoundComponent} , // not found tjr à la fin
      
-  ]),
-  HttpClientModule,
-  FormsModule
-],
+    ])
+  ],
 
   providers: [ArticleFictifService],
   bootstrap: [AppComponent]
