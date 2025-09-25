@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleFictifService {
-  url = "https://fierce-inlet-90146.herokuapp.com/articles";
+  // URL de fallback si l'API Heroku ne fonctionne plus
+  url = "https://jsonplaceholder.typicode.com/posts";
 
   constructor(private http : HttpClient) { }
 
@@ -17,6 +19,4 @@ export class ArticleFictifService {
   {
     return this.http.get(this.url+"/"+id);
   }
-
-  
 }

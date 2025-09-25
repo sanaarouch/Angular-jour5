@@ -23,7 +23,7 @@
              <tbody>
              <tr *ngFor="let article of articles">
                  <td>
-                     {{ article.titre }}
+                     {{ article.title || article.titre }}
                  </td>
                  <td>
                      <a href="/" class="btn btn-warning">Modifier</a>

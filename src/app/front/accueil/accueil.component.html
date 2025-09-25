@@ -1,9 +1,9 @@
  <div class="row mt-3">
      <article class="col-6" *ngFor="let article of articles">
-         <h2>{{article.titre}}</h2>
-         <p>{{article.contenu}}</p>
+         <h2>{{article.title || article.titre}}</h2>
+         <p>{{article.body || article.contenu}}</p>
          <p>
-             <a [routerLink]="['/article', article._id]" class="btn btn-primary">Lire plus</a>
+             <a [routerLink]="['/article', article.id || article._id]" class="btn btn-primary">Lire plus</a>
          </p>
      </article>
 </div>  
