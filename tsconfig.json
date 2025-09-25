@@ -11,6 +11,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
+    "enableIvy": false,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -20,7 +21,8 @@
     ]
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "enableIvy": false,
+    "fullTemplateTypeCheck": false,
+    "strictInjectionParameters": false
   }
 }

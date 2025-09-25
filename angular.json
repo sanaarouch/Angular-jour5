@@ -71,6 +71,11 @@
             "production": {
               "browserTarget": "jour5:build:production"
             }
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "jour5:build:production"
+            }
           }
         },
         "extract-i18n": {
@@ -123,5 +128,8 @@
         }
       }
     }},
-  "defaultProject": "jour5"
+  "defaultProject": "jour5",
+  "cli": {
+    "analytics": false
+  }
 }
