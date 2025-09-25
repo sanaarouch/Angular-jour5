@@ -43,5 +43,5 @@ import { AjouterComponent } from './back/article/ajouter/ajouter.component';
   providers: [],
   bootstrap: [AppComponent]
 
-}
-)
+})
+export class AppModule { }
