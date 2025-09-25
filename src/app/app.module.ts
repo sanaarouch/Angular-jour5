@@ -42,3 +42,6 @@ import { AjouterComponent } from './back/article/ajouter/ajouter.component';
   ],
   providers: [],
   bootstrap: [AppComponent]
+
+}
+)
