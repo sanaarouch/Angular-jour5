@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import { ProductService, Product } from "../../service/article-fictif.service"
+import { ProductService, Product } from "../../service/article-fictif.service";
 
 @Component({
   selector: 'app-product',
@@ -34,6 +34,4 @@ export class ProductComponent implements OnInit {
   addToCart() {
     console.log(`Ajout au panier: ${this.quantity} x ${this.product?.title}`);
   }
-}
-
 }
