@@ -1,6 +1,56 @@
-<div class="row mt-3">
-    <div class="col-12">
-        <h1>{{article.title || article.titre}}</h1>
-        <p>{{article.body || article.contenu}}</p>
+<div class="container mt-4" *ngIf="product">
+    <div class="row">
+        <div class="col-md-6">
+            <img [src]="product.image" [alt]="product.title" class="img-fluid product-detail-image">
+        </div>
+        <div class="col-md-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/">Accueil</a></li>
+                    <li class="breadcrumb-item active">{{product.category | titlecase}}</li>
+                </ol>
+            </nav>
+            
+            <h1 class="h2">{{product.title}}</h1>
+            <p class="text-muted">Catégorie: {{product.category | titlecase}}</p>
+            
+            <div class="mb-3">
+                <div class="d-flex align-items-center">
+                    <div class="text-warning me-2">
+                        <span *ngFor="let star of [1,2,3,4,5]" 
+                              [class]="star <= product.rating.rate ? 'fas fa-star' : 'far fa-star'">★</span>
+                    </div>
+                    <span class="text-muted">({{product.rating.count}} avis)</span>
+                </div>
+            </div>
+            
+            <h3 class="text-success mb-3">${{product.price}}</h3>
+            
+            <p class="lead">{{product.description}}</p>
+            
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label for="quantity" class="form-label">Quantité:</label>
+                    <input type="number" id="quantity" class="form-control" [(ngModel)]="quantity" min="1" max="10">
+                </div>
+            </div>
+            
+            <div class="d-flex gap-3">
+                <button class="btn btn-primary btn-lg" (click)="addToCart()">
+                    <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                </button>
+                <button class="btn btn-outline-secondary btn-lg">
+                    <i class="fas fa-heart"></i> Favoris
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4" *ngIf="!product">
+    <div class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Chargement...</span>
+        </div>
     </div>
 </div>

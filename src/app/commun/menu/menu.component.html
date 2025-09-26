@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-md bg-light navbar-light">
+<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" routerLink="/">
+            <i class="fas fa-store"></i> TechStore
+        </a>
     <button class="navbar-toggler" (click)="toogleMenu(menu)">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,13 +12,27 @@
                 <a routerLink="/" class="nav-link">Accueil</a>
             </li>
             <li class="nav-item">
-                <a routerLink="/articles" class="nav-link">Article</a>
+                <a routerLink="/products" class="nav-link">Produits</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Catégories</a>
             </li>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i> Panier <span class="badge bg-warning text-dark">0</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i> Connexion
+                </a>
+            </li>
+            <li class="nav-item">
                 <a routerLink="/admin" class="nav-link">Admin</a>
             </li>
         </ul> 
+    </div>
     </div>
 </nav>

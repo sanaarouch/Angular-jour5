@@ -1,0 +1,20 @@
+.product-detail-image {
+  max-height: 500px;
+  object-fit: contain;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.text-warning .fas,
+.text-warning .far {
+  color: #ffc107;
+}
+
+.btn-lg {
+  padding: 12px 24px;
+}
+
+.gap-3 {
+  gap: 1rem;
+}

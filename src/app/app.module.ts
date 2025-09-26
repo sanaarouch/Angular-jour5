@@ -7,9 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './commun/menu/menu.component';
 import { AccueilComponent } from './front/accueil/accueil.component';
-import { ArticleComponent } from './front/article/article.component';
+import { ProductComponent } from './front/article/article.component';
 import { NotFoundComponent } from './front/not-found/not-found.component';
-import { ArticleFictifService} from "./service/article-fictif.service";
+import { ProductService} from "./service/article-fictif.service";
 import { DashboardComponent } from './back/dashboard/dashboard.component';
 import { ListeComponent } from './back/article/liste/liste.component';
 import { MenuDashboardComponent } from './back/menu-dashboard/menu-dashboard.component';
@@ -20,7 +20,7 @@ import { AjouterComponent } from './back/article/ajouter/ajouter.component';
     AppComponent,
     MenuComponent,
     AccueilComponent,
-    ArticleComponent,
+    ProductComponent,
     NotFoundComponent,
     DashboardComponent,
     ListeComponent,
@@ -33,9 +33,9 @@ import { AjouterComponent } from './back/article/ajouter/ajouter.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: AccueilComponent },
-      { path: 'article/:id', component: ArticleComponent },
-      { path: 'admin/article/liste', component: ListeComponent },
-      { path: 'admin/article/ajouter', component: AjouterComponent },
+      { path: 'product/:id', component: ProductComponent },
+      { path: 'admin/product/liste', component: ListeComponent },
+      { path: 'admin/product/ajouter', component: AjouterComponent },
       { path: 'admin', component: DashboardComponent },
       { path: '**', component: NotFoundComponent }
     ], { enableTracing: false })

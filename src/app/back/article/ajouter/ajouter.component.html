@@ -1,1 +1,40 @@
-<p>ajouter works!</p>
+<div class="row mt-3">
+    <div class="col-4">
+        <app-menu-dashboard></app-menu-dashboard>
+    </div>
+    <div class="col-8">
+        <h1>Ajouter un produit</h1>
+        <form class="mt-4">
+            <div class="mb-3">
+                <label for="title" class="form-label">Nom du produit</label>
+                <input type="text" class="form-control" id="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Prix ($)</label>
+                <input type="number" class="form-control" id="price" step="0.01" required>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Catégorie</label>
+                <select class="form-control" id="category" required>
+                    <option value="">Sélectionner une catégorie</option>
+                    <option value="electronics">Électronique</option>
+                    <option value="jewelery">Bijoux</option>
+                    <option value="men's clothing">Vêtements homme</option>
+                    <option value="women's clothing">Vêtements femme</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">URL de l'image</label>
+                <input type="url" class="form-control" id="image" required>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Ajouter le produit</button>
+                <a routerLink="/admin/product/liste" class="btn btn-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>

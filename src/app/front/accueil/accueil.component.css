@@ -1,0 +1,23 @@
+.product-image {
+  height: 200px;
+  object-fit: contain;
+  padding: 15px;
+  background-color: #f8f9fa;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn-gap {
+  gap: 0.5rem;
+}
+
+.text-warning .fas,
+.text-warning .far {
+  color: #ffc107;
+}

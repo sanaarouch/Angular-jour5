@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleFictifService} from'../../../service/article-fictif.service';
+import { ProductService, Product } from '../../../service/article-fictif.service';
 
 @Component({
   selector: 'app-liste',
@@ -7,13 +7,13 @@ import { ArticleFictifService} from'../../../service/article-fictif.service';
   styleUrls: ['./liste.component.css']
 })
 export class ListeComponent implements OnInit {
-  articles;
-  constructor(private service : ArticleFictifService) { }
+  products: Product[] = [];
+  constructor(private service : ProductService) { }
 
   ngOnInit(): void {
-    this.service.getAllArticles()
-    .subscribe((response : Response) =>{
-      this.articles = response;
+    this.service.getAllProducts()
+    .subscribe((response : Product[]) =>{
+      this.products = response;
     })
   }
 
