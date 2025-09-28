@@ -3,7 +3,7 @@
   "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "jour5": {
+    "techstore": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/jour5",
+            "outputPath": "dist/techstore",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,7 +70,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "jour5:build"
+            "browserTarget": "techstore:build"
           },
           "configurations": {
             "production": {
@@ -133,7 +133,7 @@
         }
       }
     }},
-  "defaultProject": "jour5",
+  "defaultProject": "techstore",
   "cli": {
     "analytics": false
   }
