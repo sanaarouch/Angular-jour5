@@ -1,56 +1,417 @@
-<div class="container mt-4" *ngIf="product">
-    <div class="row">
-        <div class="col-md-6">
-            <img [src]="product.image" [alt]="product.title" class="img-fluid product-detail-image">
-        </div>
-        <div class="col-md-6">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a routerLink="/">Accueil</a></li>
+                  <button class="color-option" *ngFor="let color of getAvailableColors(product)"
+                          [style.background]="color.hex"
+                          [class.selected]="selectedColor === color.name"
+                          [title]="color.name"
+                          (click)="selectColor(color.name)">
+                    <i class="fas fa-check" *ngIf="selectedColor === color.name"></i>
+                  </button>
+                </div>
+                <span class="selected-color-name">{{ selectedColor || 'Noir' }}</span>
+              </div>
+              </a>
+          </div>
+                <small>{{ getRatingBreakdown(product) }}</small>
+                <i class="fas fa-comments"></i>
+          <div class="action-buttons-section">
+            <div class="main-actions">
+              <button class="btn btn-add-to-cart" (click)="addToCart()">
+            </div>
+                <div class="btn-content">
+                  <span class="btn-text">Ajouter au panier</span>
+                  <small class="btn-price">${{ (product.price * quantity).toFixed(2) }}</small>
+                </div>
+          </div>
+              
+              <div class="secondary-actions">
+                <button class="btn btn-wishlist" (click)="addToWishlist()">
+                  <i class="fas fa-heart"></i>
+                  <span>Favoris</span>
+                </button>
+                <button class="btn btn-compare">
+                  <i class="fas fa-balance-scale"></i>
+                  <span>Comparer</span>
+                </button>
+                <button class="btn btn-share">
+                  <i class="fas fa-share-alt"></i>
+                  <span>Partager</span>
+                </button>
+              </div>
+            </div>
+          <h1 class="product-title-main">
+                  Économie: {{ getDiscountPercentage(product) }}%
+            <button class="btn btn-buy-now" (click)="buyNow()">
+              <i class="fas fa-bolt"></i>
+              <span>Acheter maintenant</span>
+              <small>Livraison express disponible</small>
+            </button>
+            
+            <!-- Informations de livraison -->
+            <div class="delivery-estimation">
+              <div class="delivery-option selected">
+                <i class="fas fa-truck"></i>
+                <div class="delivery-content">
+                  <strong>Livraison Standard</strong>
+                  <span>{{ getDeliveryDate() }} • {{ product.price >= 50 ? 'Gratuite' : '4.99€' }}</span>
+                </div>
+              </div>
+              <div class="delivery-option">
+                <i class="fas fa-rocket"></i>
+                <div class="delivery-content">
+                  <strong>Livraison Express</strong>
+                  <span>Demain avant 13h • 9.99€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+              </div>
+          <!-- Garanties et services -->
+          <div class="services-section">
+            <h4 class="services-title">Nos engagements</h4>
+            <div class="services-grid">
+              <div class="service-item">
+                <i class="fas fa-shield-check"></i>
+                <div class="service-content">
+                  <strong>Garantie {{ getWarrantyPeriod(product) }}</strong>
+                  <span>Extension possible jusqu'à 5 ans</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-headset"></i>
+                <div class="service-content">
+                  <strong>Support technique gratuit</strong>
+                  <span>Par téléphone, chat ou email</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-tools"></i>
+                <div class="service-content">
+                  <strong>Installation offerte</strong>
+                  <span>Service à domicile disponible</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-recycle"></i>
+                <div class="service-content">
+                  <strong>Reprise ancien matériel</strong>
+                  <span>Jusqu'à 200€ de remise</span>
+                </div>
+              </div>
+            </div>
                     <li class="breadcrumb-item active">{{product.category | titlecase}}</li>
-                </ol>
+                <span>Retour gratuit sous 45 jours</span>
+              </div>
             </nav>
-            
-            <h1 class="h2">{{product.title}}</h1>
-            <p class="text-muted">Catégorie: {{product.category | titlecase}}</p>
-            
+    </div>
+  </div>
+            </div>
+  <!-- Section détaillée avec onglets -->
+  <div class="product-details-section">
+    <div class="container-modern">
+          <div class="product-highlights-section">
             <div class="mb-3">
-                <div class="d-flex align-items-center">
+          <button class="tab-btn active" data-tab="description">
+            <i class="fas fa-file-alt"></i>
+            <span>Description Complète</span>
+            <div class="highlights-grid">
                     <div class="text-warning me-2">
-                        <span *ngFor="let star of [1,2,3,4,5]" 
+              <div class="highlight-card" *ngFor="let highlight of getProductHighlights(product)">
+          <button class="tab-btn" data-tab="specifications">
+            <i class="fas fa-cogs"></i>
+            <span>Spécifications</span>
                               [class]="star <= product.rating.rate ? 'fas fa-star' : 'far fa-star'">★</span>
+                <div class="highlight-content">
                     </div>
-                    <span class="text-muted">({{product.rating.count}} avis)</span>
+          <button class="tab-btn" data-tab="reviews">
+            <i class="fas fa-star"></i>
+            <span>Avis ({{ product.rating.count }})</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="tab-btn" data-tab="expert">
+          <i class="fas fa-user-tie"></i>
+          <span>Avis Expert</span>
+                  <span>{{ highlight.description }}</span>
+                </div>
                 </div>
             </div>
+              </div>
             
-            <h3 class="text-success mb-3">${{product.price}}</h3>
+        <div class="tab-panel active" id="description">
+          <div class="description-detailed">
+            <div class="row g-5">
+              <div class="col-lg-8">
+                <h3>Ce qui rend ce produit exceptionnel</h3>
+                <p class="lead">{{ product.description }}</p>
+                
+                <div class="feature-breakdown">
+                  <div class="feature-item" *ngFor="let feature of getDetailedFeatures(product)">
+                    <div class="feature-icon">
+                      <i [class]="feature.icon"></i>
+                    </div>
+                    <div class="feature-text">
+                      <h5>{{ feature.title }}</h5>
+                      <p>{{ feature.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-lg-4">
+                <div class="product-summary-card">
+                  <h4>En résumé</h4>
+                  <ul class="summary-list">
+                    <li *ngFor="let point of getSummaryPoints(product)">
+                      <i class="fas fa-check"></i>
+                      <span>{{ point }}</span>
+                    </li>
+                  </ul>
+                  
+                  <div class="expert-recommendation">
+                    <div class="expert-badge">
+                      <i class="fas fa-user-tie"></i>
+                      <span>Recommandation Expert</span>
+                    </div>
+                    <p>"{{ getExpertRecommendation(product) }}"</p>
+                    <strong>- {{ getExpertName(product) }}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Onglet Avis Expert -->
+        <div class="tab-panel" id="expert">
+          <div class="expert-review-full">
+            <div class="expert-header">
+              <div class="expert-profile">
+                <img [src]="getExpertImage(product)" [alt]="getExpertName(product)">
+                <div class="expert-info">
+                  <h3>{{ getExpertName(product) }}</h3>
+                  <p>{{ getExpertTitle(product) }}</p>
+                  <div class="expert-credentials">
+                    <span>{{ getExpertExperience(product) }} d'expérience</span>
+                    <span>•</span>
+                    <span>{{ getExpertSpecialty(product) }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
             
-            <p class="lead">{{product.description}}</p>
-            
+            <div class="expert-review-content">
+              <div class="expert-rating">
+                <div class="expert-score">
+                  <span class="score-number">{{ getExpertScore(product) }}</span>
+                  <span class="score-label">/10</span>
+                </div>
+                <div class="score-breakdown">
+                  <div class="score-item" *ngFor="let criteria of getExpertCriteria(product)">
+                    <span class="criteria-name">{{ criteria.name }}</span>
+                    <div class="criteria-bar">
+                      <div class="criteria-fill" [style.width]="criteria.score * 10 + '%'"></div>
+                    </div>
+                    <span class="criteria-score">{{ criteria.score }}/10</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="expert-text">
+                <h4>Mon analyse détaillée</h4>
+                <p>{{ getExpertDetailedReview(product) }}</p>
+                
+                <div class="pros-cons">
+                  <div class="pros">
+                    <h5><i class="fas fa-plus-circle"></i> Les plus</h5>
+                    <ul>
+                      <li *ngFor="let pro of getProductPros(product)">{{ pro }}</li>
+                    </ul>
+                  </div>
+                  <div class="cons">
+                    <h5><i class="fas fa-minus-circle"></i> Les moins</h5>
+                    <ul>
+                      <li *ngFor="let con of getProductCons(product)">{{ con }}</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="expert-conclusion">
+                  <h5>Ma recommandation</h5>
+                  <p>{{ getExpertConclusion(product) }}</p>
+                </div>
             <div class="row mb-4">
-                <div class="col-md-4">
+            <h3 class="section-title">Description détaillée</h3>
+  <div class="container-modern">
+            <div class="description-content">
+              <p class="main-description">
                     <label for="quantity" class="form-label">Quantité:</label>
-                    <input type="number" id="quantity" class="form-control" [(ngModel)]="quantity" min="1" max="10">
+        <div class="tab-panel" id="specifications">
+          <div class="specifications-detailed">
                 </div>
-            </div>
-            
-            <div class="d-flex gap-3">
+              <div class="col-lg-8">
+                <h3>Fiche technique complète</h3>
+                
+                <div class="specs-categories">
+                  <div class="specs-category">
+                    <h4>Caractéristiques principales</h4>
+                    <div class="specs-table">
                 <button class="btn btn-primary btn-lg" (click)="addToCart()">
+                        <td class="spec-label">Catégorie:</td>
                     <i class="fas fa-shopping-cart"></i> Ajouter au panier
+              <div class="tech-specs" *ngIf="product.category === 'electronics'">
                 </button>
-                <button class="btn btn-outline-secondary btn-lg">
+                        <td class="spec-label">Marque:</td>
+                        <td>{{ getBrandName(product) }}</td>
+                <ul class="specs-list">
                     <i class="fas fa-heart"></i> Favoris
-                </button>
+                        <td class="spec-label">Modèle:</td>
+                        <td>{{ getModelName(product) }}</td>
+                      </tr>
+                      <tr>
+                        <td class="spec-label">Référence:</td>
+                        <td>TS-{{ product.id }}-{{ product.category.substring(0,3).toUpperCase() }}</td>
+                    <strong>{{ spec.name }}:</strong> {{ spec.value }}
+                    </div>
+                  </div>
+                  
+                  <div class="specs-category" *ngIf="product.category === 'electronics'">
+                    <h4>Spécifications techniques</h4>
+                    <div class="specs-table">
+                      <tr *ngFor="let spec of getDetailedSpecs(product)">
+                        <td class="spec-label">{{ spec.name }}:</td>
+                        <td>{{ spec.value }}</td>
+                      </tr>
+                    </div>
+                  </div>
+                  </li>
+        </div>
+              
+              <div class="col-lg-4">
+                <div class="specs-sidebar">
+                  <div class="compatibility-check">
+                    <h4>Vérification de compatibilité</h4>
+                    <p>Assurez-vous que ce produit convient à vos besoins</p>
+                    <button class="btn btn-outline-primary">
+                      <i class="fas fa-check-circle"></i>
+                      Vérifier la compatibilité
+                    </button>
+                  </div>
+                  
+                  <div class="download-section">
+                    <h4>Documentation</h4>
+                    <div class="download-links">
+                      <a href="#" class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Manuel d'utilisation (PDF)</span>
+                      </a>
+                      <a href="#" class="download-link">
+                        <i class="fas fa-download"></i>
+                        <span>Pilotes et logiciels</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="thumbnail-item active" onclick="changeMainImage(this)">
+                <div class="quantity-selector-advanced">
+                <i class="fas fa-certificate"></i>
+                  <div class="qty-display">
+                   class="thumbnail-image">
+        <div class="tab-panel" id="reviews">
+          <div class="reviews-detailed">
+            <div class="reviews-summary">
+              <div class="rating-overview">
+                <div class="rating-large">
+                  <span class="rating-number">{{ product.rating.rate }}</span>
+                  <div class="rating-stars">
+            <div class="zoom-indicator">
+                  <button type="button" class="qty-btn plus" 
+              <div class="option-group" *ngIf="isClothing(product)">
+                  <p class="rating-description">Basé sur {{ product.rating.count }} avis vérifiés</p>
+                </div>
+                
+                <div class="rating-distribution">
+                  <div class="distribution-item" *ngFor="let dist of getRatingDistribution()">
+                    <span class="star-count">{{ dist.stars }} ⭐</span>
+                    <div class="distribution-bar">
+                      <div class="distribution-fill" [style.width]="dist.percentage + '%'"></div>
+                    </div>
+                    <span class="distribution-count">{{ dist.count }}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+            <div class="trust-item">
+            <div class="reviews-list">
+              <div class="review-filters">
+                <button class="filter-review-btn active">Tous les avis</button>
+                <button class="filter-review-btn">5 étoiles</button>
+                <button class="filter-review-btn">4 étoiles</button>
+                <button class="filter-review-btn">Avec photos</button>
+                <button class="filter-review-btn">Achat vérifié</button>
+              </div>
+              
+              <!-- Avis détaillés -->
+              <div class="review-item featured" *ngFor="let review of getDetailedReviews(product)">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img [src]="review.avatar" [alt]="review.name">
+                    <div class="reviewer-details">
+                      <strong>{{ review.name }}</strong>
+                      <div class="reviewer-meta">
+                        <span class="verified-badge" *ngIf="review.verified">
+                          <i class="fas fa-check-circle"></i>
+                          Achat vérifié
+                        </span>
+                        <span class="review-date">{{ review.date }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <div class="stars">
+                      <i *ngFor="let i of [1,2,3,4,5]" 
+                         [class]="i <= review.rating ? 'fas fa-star' : 'far fa-star'"></i>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="review-content">
+                  <h5 class="review-title">{{ review.title }}</h5>
+                  <p class="review-text">{{ review.content }}</p>
+                  
+                  <div class="review-photos" *ngIf="review.photos">
+                    <img *ngFor="let photo of review.photos" [src]="photo" class="review-photo">
+                  </div>
+                  
+                  <div class="review-helpful">
+                    <button class="helpful-btn">
+                      <i class="fas fa-thumbs-up"></i>
+                      Utile ({{ review.helpful }})
+                    </button>
+                    <button class="report-btn">
+                      <i class="fas fa-flag"></i>
+                      Signaler
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="trust-content">
+            <div class="reviews-footer">
+              <button class="btn btn-load-more">
+                <i class="fas fa-plus"></i>
+                Charger plus d'avis
+              </button>
+              <a href="#" class="write-review-link">
+                <i class="fas fa-edit"></i>
+                Écrire un avis
+              </a>
+            </div>
+<div class="loading-container" *ngIf="!product">
+  <div class="loading-content">
+    <div class="loading-spinner">
     </div>
-</div>
-
-<div class="container mt-4" *ngIf="!product">
-    <div class="text-center">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Chargement...</span>
-        </div>
     </div>
+    <h3>Chargement du produit...</h3>
+    <p>Nous préparons toutes les informations pour vous</p>
+  </div>
 </div>
