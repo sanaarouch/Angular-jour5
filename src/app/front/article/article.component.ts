@@ -10,6 +10,7 @@ import { ProductService, Product } from "../../service/article-fictif.service";
 export class ProductComponent implements OnInit {
   product: Product | null = null;
   quantity: number = 1;
+  Math = Math;
   
   constructor(
     private router : ActivatedRoute,

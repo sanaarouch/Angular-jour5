@@ -8,6 +8,7 @@ import { ProductService, Product } from "../../service/article-fictif.service"
 })
 export class AccueilComponent implements OnInit {
   products: Product[] = [];
+  Math = Math;
   
 
   constructor(private service: ProductService) { }
