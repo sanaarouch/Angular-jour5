@@ -1,38 +1,160 @@
-<nav class="navbar navbar-expand-md bg-primary navbar-dark">
-    <div class="container">
-        <a class="navbar-brand fw-bold" routerLink="/">
-            <i class="fas fa-store"></i> TechStore
-        </a>
-    <button class="navbar-toggler" (click)="toogleMenu(menu)">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container-fluid px-4">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <div class="brand-icon">
+        <i class="fas fa-store"></i>
+      </div>
+      <span class="brand-text">TechStore</span>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler border-0 p-2" type="button" (click)="toogleMenu(navbarNav)" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" #menu>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a routerLink="/" class="nav-link">Accueil</a>
+
+    <!-- Navigation -->
+    <div class="collapse navbar-collapse" id="navbarNav" #navbarNav>
+      <!-- Main Navigation -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link nav-link-modern" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Accueil</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-link-modern dropdown-toggle" href="#" id="categoriesDropdown" role="button" 
+             data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-th-large nav-icon"></i>
+            <span>Catégories</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-modern" aria-labelledby="categoriesDropdown">
+            <li><a class="dropdown-item dropdown-item-modern" href="#">
+              <i class="fas fa-laptop category-icon"></i>
+              <div class="category-info">
+                <span class="category-name">Électronique</span>
+                <small class="category-count">245 produits</small>
+              </div>
+            </a></li>
+            <li><a class="dropdown-item dropdown-item-modern" href="#">
+              <i class="fas fa-tshirt category-icon"></i>
+              <div class="category-info">
+                <span class="category-name">Mode Homme</span>
+                <small class="category-count">89 produits</small>
+              </div>
+            </a></li>
+            <li><a class="dropdown-item dropdown-item-modern" href="#">
+              <i class="fas fa-female category-icon"></i>
+              <div class="category-info">
+                <span class="category-name">Mode Femme</span>
+                <small class="category-count">156 produits</small>
+              </div>
+            </a></li>
+            <li><a class="dropdown-item dropdown-item-modern" href="#">
+              <i class="fas fa-gem category-icon"></i>
+              <div class="category-info">
+                <span class="category-name">Bijoux</span>
+                <small class="category-count">67 produits</small>
+              </div>
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item dropdown-item-modern text-primary" href="#">
+              <i class="fas fa-eye category-icon"></i>
+              <div class="category-info">
+                <span class="category-name">Voir Tout</span>
+                <small class="category-count">Tous les produits</small>
+              </div>
+            </a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-modern" href="#">
+            <i class="fas fa-tags nav-icon"></i>
+            <span>Promotions</span>
+            <span class="promo-badge">-50%</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Search Bar -->
+      <div class="navbar-search me-4">
+        <form class="search-form" role="search">
+          <div class="search-input-group">
+            <div class="search-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <input type="search" class="search-input" placeholder="Rechercher des produits..." aria-label="Search">
+            <button class="search-btn" type="submit" aria-label="Rechercher">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- User Actions -->
+      <ul class="navbar-nav navbar-actions">
+        <!-- Wishlist -->
+        <li class="nav-item">
+          <a class="nav-link nav-action" href="#" aria-label="Liste de souhaits">
+            <div class="action-icon">
+              <i class="fas fa-heart"></i>
+              <span class="action-badge">3</span>
+            </div>
+          </a>
+        </li>
+        
+        <!-- Cart -->
+        <li class="nav-item">
+          <a class="nav-link nav-action" href="#" aria-label="Panier">
+            <div class="action-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="action-badge cart-badge">0</span>
+            </div>
+          </a>
+        </li>
+        
+        <!-- User Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-action dropdown-toggle" href="#" id="userDropdown" role="button" 
+             data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="user-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-modern user-dropdown" aria-labelledby="userDropdown">
+            <li class="dropdown-header">
+              <div class="user-info">
+                <div class="user-avatar-large">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                  <span class="user-name">Utilisateur</span>
+                  <small class="user-email">user@example.com</small>
+                </div>
+              </div>
             </li>
-            <li class="nav-item">
-                <a routerLink="/products" class="nav-link">Produits</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Catégories</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-shopping-cart"></i> Panier <span class="badge bg-warning text-dark">0</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-user"></i> Connexion
-                </a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/admin" class="nav-link">Admin</a>
-            </li>
-        </ul> 
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item dropdown-item-modern" href="#">
+              <i class="fas fa-user me-3"></i>Mon Profil
+            </a></li>
+            <li><a class="dropdown-item dropdown-item-modern" href="#">
+              <i class="fas fa-box me-3"></i>Mes Commandes
+            </a></li>
+            <li><a class="dropdown-item dropdown-item-modern" href="#">
+              <i class="fas fa-heart me-3"></i>Mes Favoris
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item dropdown-item-modern" routerLink="/admin">
+              <i class="fas fa-cog me-3"></i>Administration
+            </a></li>
+            <li><a class="dropdown-item dropdown-item-modern text-danger" href="#">
+              <i class="fas fa-sign-out-alt me-3"></i>Déconnexion
+            </a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    </div>
+  </div>
 </nav>
